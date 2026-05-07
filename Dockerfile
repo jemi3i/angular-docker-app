@@ -9,6 +9,6 @@ RUN npm run build --configuration=production
 # Stage 2: Serve the app with Nginx
 FROM nginx:stable-alpine
 # NOTE: Replace 'angular-docker-app' with the 'name' found in your package.json
-COPY --from=build /app/dist/angular-docker-app /usr/share/nginx/html
+COPY --from=build /app/dist/angular-docker-app/browser /usr/share/nginx/html
 EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]
