@@ -9,14 +9,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
-        # This is actions/checkout@v4
-        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
       - name: Set up Node.js
-        # This is actions/setup-node@v4
-        uses: actions/setup-node@60edb5dd545a775178f525247833781747318c8b 
+        uses: actions/setup-node@v4
         with:
           node-version: '20'
           cache: 'npm'
@@ -28,22 +26,20 @@ jobs:
         run: npm run test:ci -- --code-coverage
 
       - name: SonarCloud Scan
-        # This is SonarSource/sonarcloud-github-action@master
-        uses: SonarSource/sonarcloud-github-action@db503068410e731d3f13ad442140c1023a8c3d22 
+        # Using v2 is the standard stable way to reference this action
+        uses: SonarSource/sonarcloud-github-action@v2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
       - name: Login to Docker Hub
-        # This is docker/login-action@v3
-        uses: docker/login-action@9780b0c442fbb1117ed29e0efdff1e18412f7567 
+        uses: docker/login-action@v3
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Build and Push Image
-        # This is docker/build-push-action@v5
-        uses: docker/build-push-action@471d1dc4e07e5cdedd4c2171150001c434f0b7a4 
+        uses: docker/build-push-action@v6
         with:
           context: .
           push: true
