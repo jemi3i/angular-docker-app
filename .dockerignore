@@ -1,0 +1,34 @@
+# Dependency directories
+node_modules/
+jspm_packages/
+
+# Build output
+dist/
+tmp/
+out/
+.angular/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Git
+.git/
+.gitignore
+
+# Environment & Secrets
+.env
+.env.*
+assets/config.json  # Ignore if you have local secrets here
+
+# IDEs and System files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Docker & CI
+Dockerfile
+.dockerignore
+.github/
